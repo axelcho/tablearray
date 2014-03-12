@@ -28,43 +28,34 @@ $data = array();
 
 //Reads all tables from the html (there were 2 in the original)
 
-foreach ($tables as $table)
-	{	
+foreach ($tables as $table) {	
 	$rows = $table->getElementsByTagName('tr');	
 	
 		//rows are indexed in foreach clause because first row is used to extract years, while the rest are for data.
-		foreach ($rows as $rowindex => $row)
-		
-		{
-			if ($rowindex == 0)
-			{
+		foreach ($rows as $rowindex => $row) {
+			if ($rowindex == 0) {
 			//reads first row from each table into year keys
 				$years = $row->getElementsByTagName('td');
 				$year_keys = array();
-				foreach ($years as $year)
-				{
+				foreach ($years as $year) {
 				$year_keys[] = $year->nodeValue;
 				}			
 			}
 			
-			else
-			{
+			else {
 				$sum = 0;
 				$cells = $row->getElementsByTagName('td');
 
 				//cells are also indexed because first cell supplies financial title, while the rest just gives numbers
-				foreach ($cells as $cellindex => $cell)
-				{
-				if ($cellindex == 0)
-					{
+				foreach ($cells as $cellindex => $cell)	{
+				if ($cellindex == 0) {
 					//first cell goes into the title key
 					$financial_titles = $cell->nodeValue;				
 					}
 		
 			
 				
-				else
-					{
+				else {
 					
 					//if not the first cell, convert the td contents into integer type and save as array values under appropriate keys
 					//strtr takes less memory and more reliable than preg_replace
